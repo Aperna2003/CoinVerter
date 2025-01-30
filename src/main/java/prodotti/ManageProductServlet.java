@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import utenti.User;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
+
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -63,7 +63,7 @@ public class ManageProductServlet extends HttpServlet {
 					try {
 						int id = Integer.parseInt(request.getParameter("id"));
 						float prezzo = -1;
-						Double valore = -1.00;
+						double valore = -1.00;
 						
 						if(!request.getParameter("valore").equals(""))
 							valore = Double.parseDouble(request.getParameter("valore"));
@@ -111,7 +111,7 @@ public class ManageProductServlet extends HttpServlet {
 					    		 
 					    		 filePart.write(relativePath);
 					        //prodotto.setFoto(relativePath);
-					        prodotto.setFoto("img/products/" + fileName);
+					        	prodotto.setFoto("img/products/" + fileName);
 					     }						
 					     }
 						//if((prodotto.getType() == "ricarica") && quantita > 0) prodotto.setQuantity(quantita);
@@ -147,7 +147,7 @@ public class ManageProductServlet extends HttpServlet {
 					
 						if(prezzo != -1) prodotto.setPrice(prezzo);
 						
-						 if(filePart != null) {
+						if(filePart != null) {
 					    	 String fileName = filePart.getSubmittedFileName();
 					    	 
 					    	 if(fileName != null && !fileName.isEmpty()){
