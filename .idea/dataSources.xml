@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="jdbc/coinverter" uuid="9c28e646-8a1d-4d30-bc0b-1ad737740150">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <configured-by-url>true</configured-by-url>
+      <remarks>Tomcat.Resource
+
+C:/Users/pasto/IdeaProjects/CoinVerter/src/main/resources/META-INF/context.xml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/CoinVerter</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="com.intellij.clouds.kubernetes.db.host.port" />
+        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
+        <property name="useJDBCCompliantTimezoneShift" value="true" />
+        <property name="useUnicode" value="true" />
+        <property name="allowPublicKeyRetrieval" value="true" />
+        <property name="serverTimezone" value="UTC" />
+        <property name="useLegacyDatetimeCode" value="false" />
+        <property name="autoReconnect" value="true" />
+        <property name="com.intellij.clouds.kubernetes.db.container.port" />
+        <property name="useSSL" value="false" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>

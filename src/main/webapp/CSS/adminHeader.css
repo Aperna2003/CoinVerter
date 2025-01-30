@@ -1,0 +1,241 @@
+#container {
+	background-color: #f5f5f5;
+	margin: 0;
+	top: 0;
+	text-align: center;
+	width: auto;
+	display: grid;
+	grid-gap: 1%;
+	grid-template-columns: 1.5fr 2.1fr 4.9fr 0.5fr;
+	z-index: 6;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 40px;
+	box-sizing: border-box;
+	position: sticky;
+	box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 2px 6px 2px
+		rgba(60, 64, 67, 0.149);
+}
+
+#header-block {
+	position: sticky;
+	top: 0px;
+	z-index: 5;
+}
+
+#logoBox {
+	position: relative;
+	align-items: center;
+	max-width: 500px;
+}
+
+#logo {
+	height: auto;
+}
+
+#collection {
+	font-weight: bold;
+	display: block;
+	padding: 0;
+	text-align: center;
+	align-items: center;
+}
+
+#shop {
+	text-align: center;
+}
+
+#collection a {
+	text-decoration: none;
+	color: rgb(29, 29, 29);
+}
+
+#searchIcon {
+	margin: 4px;
+	padding: 2.5px;
+	height: 30px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+.searchContainer {
+	width: max-content;
+	padding: 0;
+	border: 0;
+	border-radius: 20px;
+	color: rgb(29, 29, 29);
+	font-size: 14px;
+	background-color: #ececec;
+}
+
+#searchBtn {
+	display: none;
+	border-radius: 20px;
+	border: 0;
+	background-color: #ececec;
+	/*
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    */
+}
+
+/*
+#searchBtn.show {
+    display: block;
+}
+#searchBtn.hidden {
+    display: block;
+}
+#searchBtn.show {
+    animation-name: appear;
+}
+#searchBtn.hidden {
+    animation-name: disappear;
+}
+*/
+#searchIconBtn {
+	margin: 4px;
+	padding: 2.5px;
+	height: 30px;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+/*
+@keyframes appear {
+    0% {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes disappear {
+    0% {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+*/
+#input {
+	width: 35em;
+	height: 3em;
+	padding: 0px 15px;
+	background-color: transparent;
+	border: none;
+	border-radius: 20px;
+}
+
+#input::placeholder {
+	font-weight: bold;
+}
+
+#input:focus {
+	outline: none;
+}
+
+#toggle {
+	display: flex;
+	align-items: center;
+}
+
+#toggle a {
+	color: rgb(29, 29, 29)
+}
+
+/* badge-Icon */
+.cartContainer {
+	margin: auto;
+	padding: 20px;
+}
+
+.position {
+	vertical-align: top;
+	display: inline-block;
+	text-align: center;
+	position: relative;
+	cursor: pointer;
+}
+
+.caption {
+	margin-top: 5px;
+	font-size: 12px;
+	display: block;
+}
+
+.icon {
+	position: relative;
+	width: 30px;
+}
+
+.badge {
+	position: absolute;
+	top: -16px;
+	right: -18px;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 25px;
+	height: 25px;
+	padding: 1px 10px 0 10px;
+	border: 3px solid #f4fdff;
+	border-radius: 500px;
+	font-size: 10px;
+	font-weight: 600;
+	color: #fff;
+	text-align: center;
+	z-index: 2;
+	transition: transform 0.15s, background-color 0.5s;
+}
+
+.yellow {
+	background: #FFF350;
+	color: #000;
+}
+
+.position:hover .badge {
+	background-color: #000;
+	transform: scale(1.08);
+	color: white;
+}
+
+.position:active .badge {
+	background-color: #555;
+	transform: scale(1);
+	transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.75);
+}
+
+@media screen and (max-width: 1300px) {
+	#input {
+		width: 30em;
+	}
+}
+
+@media screen and (max-width: 1212px) {
+	#input {
+		width: 25em;
+	}
+}
+
+@media screen and (max-width: 1090px) {
+	#input {
+		width: 15em;
+	}
+}
+
+@media screen and (max-width: 950px) {
+	.cartContainer {
+		padding: 15px;
+	}
+	#container {
+		padding: 15px 40px;
+	}
+	#input {
+		width: 8.5em;
+	}
+}

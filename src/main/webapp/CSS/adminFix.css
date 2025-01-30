@@ -1,0 +1,9 @@
+#bgLow {
+	height: 100vh;
+}
+	
+@media screen and (max-width: 1060px) {
+	#bgLow {
+		height: 100vh;
+	}
+}

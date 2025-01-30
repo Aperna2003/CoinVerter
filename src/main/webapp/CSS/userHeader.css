@@ -1,0 +1,34 @@
+#input {
+	width: 35em;
+	height: 3em;
+	padding: 0px 15px;
+	background-color: transparent;
+	border: none;
+	border-radius: 20px;
+}
+
+#input::placeholder {
+	font-weight: bold;
+}
+
+#input:focus {
+	outline: none;
+}
+
+@media screen and (max-width: 1300px) {
+	#input {
+		width: 30em;
+	}
+}
+
+@media screen and (max-width: 1212px) {
+	#input {
+		width: 25em;
+	}
+}
+
+@media screen and (max-width: 1090px) {
+	#input {
+		width: 15em;
+	}
+}
