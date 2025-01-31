@@ -47,7 +47,7 @@ public class ShopServletTest {
 
             when(request.getSession()).thenReturn(session);
             when(request.getParameter("filter")).thenReturn(null);
-            when(session.getAttribute("action")).thenReturn(null);
+            //when(session.getAttribute("action")).thenReturn(null);
 
             //esecuzione
             servlet.doPost(request, response);

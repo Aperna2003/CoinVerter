@@ -10,6 +10,7 @@ import org.mockito.MockedConstruction;
 import org.mockito.junit.MockitoJUnitRunner;
 import utenti.User;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -95,10 +96,9 @@ public class ManageProductServletTest {
 
     @Test
     public void testDoPostActivityModifyEmpty() throws Exception {
-        //setup
+        // Setup
         ProductBean pb = mock(ProductBean.class);
-        try (MockedConstruction<ProductDaoDataSource> mockedDAO = mockConstruction(ProductDaoDataSource.class, (mock, context) ->
-        {
+        try (MockedConstruction<ProductDaoDataSource> mockedDAO = mockConstruction(ProductDaoDataSource.class, (mock, context) -> {
             when(mock.doRetrieveByKey(anyInt())).thenReturn(pb);
             doNothing().when(mock).doUpdate(any(ProductBean.class));
         })) {
@@ -112,20 +112,25 @@ public class ManageProductServletTest {
             when(request.getParameter("prezzo")).thenReturn("");
             when(request.getParameter("tipo")).thenReturn("");
             when(request.getParameter("nome")).thenReturn("");
+
+            // Mock ServletContext e ServletConfig
             ServletContext cx = mock(ServletContext.class);
-            //config non funzionante
-            when(servlet.getServletContext()).thenReturn(cx);
-            when(cx.getRealPath("/")).thenReturn("./");
+            ServletConfig config = mock(ServletConfig.class);
 
+            //when(config.getServletContext()).thenReturn(cx);
+            //when(cx.getRealPath("/")).thenReturn("./");
 
-            //esecuzione
+            // Inizializza la servlet con ServletConfig
+            servlet.init(config);
+
+            // Esecuzione
             servlet.doPost(request, response);
 
-            //controllo
+            // Controllo
             verify(mockedDAO.constructed().get(0)).doUpdate(any(ProductBean.class));
-
         }
     }
+
 
     @Test
     public void testDoPostActivityModify() throws Exception {
@@ -148,7 +153,7 @@ public class ManageProductServletTest {
             when(request.getParameter("nome")).thenReturn("nome");
             Part p = mock(Part.class);
             //when(request.getPart("foto")).thenReturn(p);
-            when(p.getSubmittedFileName()).thenReturn("mock");
+            //when(p.getSubmittedFileName()).thenReturn("mock");
 
             //esecuzione
             servlet.doPost(request, response);

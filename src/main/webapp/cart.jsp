@@ -111,8 +111,7 @@
 								</div>
 							</div>
 							<div class="CheckOutContainer">
-								<a href="pay.html" type="button" class="checkOutBtn">Check
-									Out</a>
+								<a href="pay.jsp" type="button" class="checkOutBtn">Check Out</a>
 							</div>
 						</div>
 						<%} %>
@@ -122,7 +121,7 @@
 		</div>
 	</main>
 
-	<jsp:include page="footer.html"></jsp:include>
+	<jsp:include page="footer.jsp"></jsp:include>
 
 	<script type="text/javascript" src="JS/scripts.js"></script>
 </body>

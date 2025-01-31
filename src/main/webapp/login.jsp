@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" type="image/gif" href="img/logo.png">
-<meta charset="utf-8">
-<meta name="viewport" content="initial-scale = 1, width = device-width">
-<link id="mystylesheet" rel="stylesheet" type="text/css"
-	href="CSS/light.css">
+	<link rel="shortcut icon" type="image/gif" href="<%=request.getServletContext().getContextPath()%>/img/logo.png">
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale = 1, width = device-width">
+	<link id="mystylesheet" rel="stylesheet" type="text/css" href="CSS/light.css">
 
-<title>CoinVerter Login</title>
+	<title>CoinVerter Login</title>
 </head>
 <body class="bgPage">
 	<div class="login">

@@ -23,11 +23,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale = 1, width = device-width">
 <%if(ordini.size() <= 2){%>
-	<link id="mystylesheet" rel="stylesheet" type="text/css" href="CSS/adminFix.css">
+	<link id="mystylesheet" rel="stylesheet" type="text/css" href="<%=request.getServletContext().getContextPath()%>/CSS/adminFix.css">
 <%}else if(ordini.size() <= 9){%>
-	<link id="mystylesheet" rel="stylesheet" type="text/css" href="CSS/adminLow.css">
+	<link id="mystylesheet" rel="stylesheet" type="text/css" href="<%=request.getServletContext().getContextPath()%>/CSS/adminLow.css">
 <%}%>
-
 <script src="../JS/scripts.js"></script>
 
 <title>CoinVerter</title>
@@ -41,8 +40,8 @@
 		<div id="bgLow" class="bg">
 			<section class="tableFix">
 				<div class="prodBtn">
-					<form class="filterForm" method="POST" action="Ordini">
-						<button class="adminBtn"><a href="Ordini">RIMUOVI FILTRO</a></button>
+					<form class="filterForm" method="POST" action="../Ordini">
+						<button class="adminBtn"><a href="../Ordini">RIMUOVI FILTRO</a></button>
 						<input type="text" name="user" id="orderFilter" placeholder="filter..."/>
 						<input type="date" name="start"	value="<%=java.time.LocalDate.now()%>"/>
 						<input type="date" name="end" value="<%=java.time.LocalDate.now()%>"/>
@@ -70,7 +69,7 @@
 							<td data-label="QUANTITA'"><%=o.getQ_acquisto()%></td>
 							<td data-label="PRODOTTO"><%=o.getNome_prodotto()%></td>
 							<td data-label="TIPO"><%=o.getTipo_prodotto()%></td>
-							<td data-label="COSTO"><%=df.format(o.getPrezzo())%></td>
+							<td data-label="COSTO">&#128; <%=df.format(o.getPrezzo())%></td>
     					</tr>
     				<%} %>
   					</tbody>

@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
-
-
-
 <head>
-<script type="text/javascript" src="JS/scripts.js"></script>
-<link rel="shortcut icon" type="image/gif" href="img/logo.png">
-<meta charset="utf-8">
-<meta name="viewport" content="initial-scale = 1, width = device-width">
-<link id="mystylesheet" rel="stylesheet" type="text/css" href="CSS/light.css">
+	<script type="text/javascript" src="JS/scripts.js"></script>
+	<link rel="shortcut icon" type="image/gif" href="img/logo.png">
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale = 1, width = device-width">
+	<link id="mystylesheet" rel="stylesheet" type="text/css" href="CSS/light.css">
 
-<title>CoinVerter</title>
+	<title>CoinVerter</title>
 </head>
 
 <body onresize="switchSuite()" onload="switchSuite()">
 
 	<jsp:include page='header.jsp'>
-		<jsp:param name="PageTitle" value="index" />
+		<jsp:param name="PageTitle" value="index"/>
 	</jsp:include>
 
 	<main class="bgPage">
@@ -53,7 +50,7 @@
 		</a>
 	</div>
 
-	<jsp:include page="footer.html" />
+	<jsp:include page="footer.jsp" />
 
 </body>
 </html>

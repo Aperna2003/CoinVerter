@@ -40,31 +40,31 @@
 				</a>
 			</div>
 			<div id="sideMenu" class="category">
-				<div class="categoryItem sideItem">
+				<div id="sideItem" class="categoryItem">
 					<a
 						href="${pageContext.request.contextPath}/Ordini"
-						class="sideSelection"> <img class="categoryIcon sideIcon"
+						class="sideSelection"> <img id="sideIcon" class="categoryIcon"
 						src="${pageContext.request.contextPath}/img/icon/iconSettings.png"
 						alt=""><span class="spec">HOME</span>
 					</a>
 				</div>
-				<div class="categoryItem sideItem">
+				<div id="sideItem2" class="categoryItem">
 					<a href="${pageContext.request.contextPath}/ProdottiAD"
-						class="sideSelection"> <img class="categoryIcon sideIcon"
+						class="sideSelection"> <img id="sideIcon2" class="categoryIcon"
 						src="${pageContext.request.contextPath}/img/icon/iconProduct.png"
 						alt=""><span class="spec">PRODUCTS</span>
 					</a>
 				</div>
-				<div class="categoryItem sideItem">
+				<div id="sideItem3" class="categoryItem">
 					<a href="${pageContext.request.contextPath}/GestioneACC"
-						class="sideSelection"> <img class="categoryIcon sideIcon"
+						class="sideSelection"> <img id="sideIcon3" class="categoryIcon"
 						src="${pageContext.request.contextPath}/img/icon/iconUserSettings.png"
 						alt=""><span class="spec">ACCOUNTS</span>
 					</a>
 				</div>
-				<div class="categoryItem sideItem">
+				<div id="sideItem4" class="categoryItem">
 					<a href="${pageContext.request.contextPath}/index.jsp"
-						class="sideSelection"> <img class="categoryIcon sideIcon"
+						class="sideSelection"> <img id="sideIcon4" class="categoryIcon"
 						src="${pageContext.request.contextPath}/img/icon/iconBack.png"
 						alt=""><span class="spec">BACK TO SITE</span>
 					</a>
@@ -72,7 +72,4 @@
 			</div>
 		</div>
 	</section>
-
-
-
 </body>
