@@ -5,10 +5,7 @@ import admin.ModifyProductServlet;
 import connection.ConPool;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockedConstruction;
-import org.mockito.MockedStatic;
+import org.mockito.*;
 import org.mockito.junit.MockitoJUnitRunner;
 import prodotti.ProductDaoDataSource;
 
@@ -20,6 +17,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -33,17 +31,15 @@ public class OrderDaoDataSourceTest {
 
 	@Test
 	public void testDoRetrieveAll() throws Exception {
-		// Crea uno spy di un'ArrayList reale per evitare problemi di ricorsione
-		List<Ordine> spyList = spy(new ArrayList<>());
+		// Crea una lista reale che sarà popolata
+		List<Ordine> realList = new ArrayList<>();
 
-		// Intercetta la creazione di una nuova ArrayList nel metodo testato
-		try (MockedStatic<ConPool> mockedConPool = mockStatic(ConPool.class);
-			 MockedConstruction<ArrayList> mockedList = mockConstruction(ArrayList.class,
-					 (mock, context) -> when(mock.add(any())).thenCallRealMethod())) {
+		// Intercetta la connessione al database
+		try (MockedStatic<ConPool> mockedConPool = mockStatic(ConPool.class)) {
 
-			// Simulazione della connessione e della query
+			// Mock della connessione
 			Connection c = mock(Connection.class);
-			mockedConPool.when(ConPool::getConnection).thenReturn(c);  // Mock del metodo statico
+			mockedConPool.when(ConPool::getConnection).thenReturn(c);
 
 			PreparedStatement ps = mock(PreparedStatement.class);
 			when(c.prepareStatement(anyString())).thenReturn(ps);
@@ -53,63 +49,82 @@ public class OrderDaoDataSourceTest {
 
 			// Simula il risultato della query con due ordini
 			when(rs.next()).thenReturn(true, true, false);
-			when(rs.getInt("id")).thenReturn(1, 2);
-			when(rs.getString("name")).thenReturn("Ordine1", "Ordine2");
+			//when(rs.getInt("id")).thenReturn(1, 2);
+			//when(rs.getString("name")).thenReturn("Ordine1", "Ordine2");
 
+			ArgumentCaptor<Ordine> ordineCaptor = ArgumentCaptor.forClass(Ordine.class);
 
+			realList = ODDS.doRetrieveAllOrders();
 
-			// Esegui il metodo da testare
-			ODDS.doRetrieveAllOrders();
-
-			// Verifica che gli ordini siano stati aggiunti alla lista
-			verify(spyList, times(2)).add(any(Ordine.class));
+			assertEquals(2, realList.size());
 		}
 	}
 
 	@Test
 	public void testDoRetrieveByDateFilter() throws Exception {
-		//setup
-		try (MockedConstruction<ProductDaoDataSource> mockedDAO = mockConstruction(ProductDaoDataSource.class);
-			 MockedConstruction<ArrayList> mockedAL = mockConstruction(ArrayList.class);
-		) {
-			OrderDaoDataSource source = new OrderDaoDataSource();
-			Connection c = mock(Connection.class);
-			when(ConPool.getConnection()).thenReturn(c);
+		// Crea una lista reale per raccogliere i risultati
+		List<Ordine> realList = new ArrayList<>();
 
-			String data1 = mock(String.class); // Mocked string data1
-			String data2 = mock(String.class); // Mocked string data2
+		// Intercetta la connessione al database
+		try (MockedStatic<ConPool> mockedConPool = mockStatic(ConPool.class);
+			 MockedConstruction<ProductDaoDataSource> mockedDAO = mockConstruction(ProductDaoDataSource.class)) {
+
+			// Mock della connessione
+			Connection c = mock(Connection.class);
+			mockedConPool.when(ConPool::getConnection).thenReturn(c);
+
+			PreparedStatement ps = mock(PreparedStatement.class);
+			when(c.prepareStatement(anyString())).thenReturn(ps);
+
 			ResultSet rs = mock(ResultSet.class);
 			when(ps.executeQuery()).thenReturn(rs);
-			Ordine o = mock(Ordine.class);
 
-			//esecuzione
-			ODDS.doRetrieveByDateFilter(data1, data2);
+			// Simula il risultato della query con due ordini
+			when(rs.next()).thenReturn(true, true, false);
+			//when(rs.getInt("id")).thenReturn(1, 2);
+			//when(rs.getString("data")).thenReturn("1-1-1", "2-2-2");
 
-			//verifica
-			verify(mockedAL.constructed().get(0), times(2)).add(o);
+			String data1 = "1-1-1";
+			String data2 = "2-2-2";
+
+			// Esegui il metodo da testare
+			realList = ODDS.doRetrieveByDateFilter(data1, data2);
+
+			assertEquals(2, realList.size());
 		}
 	}
 
 	@Test
 	public void testDoRetrieveByNameFilter() throws Exception {
-		//setup
-		try (MockedConstruction<ProductDaoDataSource> mockedDAO = mockConstruction(ProductDaoDataSource.class);
-			 MockedConstruction<ArrayList> mockedAL = mockConstruction(ArrayList.class);
-		) {
-			OrderDaoDataSource source = new OrderDaoDataSource();
-			Connection c = mock(Connection.class);
-			when(ConPool.getConnection()).thenReturn(c);
+		// Crea una lista reale per raccogliere i risultati
+		List<Ordine> realList = new ArrayList<>();
 
-			String nome = mock(String.class); // Mocked string data1
+		// Intercetta la connessione al database
+		try (MockedStatic<ConPool> mockedConPool = mockStatic(ConPool.class);
+			 MockedConstruction<ProductDaoDataSource> mockedDAO = mockConstruction(ProductDaoDataSource.class)) {
+
+			// Mock della connessione
+			Connection c = mock(Connection.class);
+			mockedConPool.when(ConPool::getConnection).thenReturn(c);
+
+			PreparedStatement ps = mock(PreparedStatement.class);
+			when(c.prepareStatement(anyString())).thenReturn(ps);
+
 			ResultSet rs = mock(ResultSet.class);
 			when(ps.executeQuery()).thenReturn(rs);
-			Ordine o = mock(Ordine.class);
 
-			//esecuzione
-			source.doRetrieveByNameFilter(nome);
+			// Simula il risultato della query con due ordini
+			when(rs.next()).thenReturn(true, true, false);
+			//when(rs.getInt("id")).thenReturn(1, 2);
+			//when(rs.getString("name")).thenReturn("nome1", "nome2");
 
-			//verifica
-			verify(mockedAL.constructed().get(0), times(2)).add(o);
+			String nome = "nome";
+
+			// Esegui il metodo da testare
+			realList = ODDS.doRetrieveByNameFilter(nome);
+
+			// Verifica che gli ordini siano stati aggiunti alla lista
+			assertEquals(2, realList.size());
 		}
 	}
 
