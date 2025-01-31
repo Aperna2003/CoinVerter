@@ -15,6 +15,7 @@ import prodotti.ProductDaoDataSource;
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -33,36 +34,37 @@ public class OrderDaoDataSourceTest {
 
 	@Test
 	public void testDoRetrieveAll() throws Exception {
-		// Crea uno spy di un'ArrayList reale per evitare problemi di ricorsione
-		List<Ordine> spyList = spy(new ArrayList<>());
+		// setup
 
-		// Intercetta la creazione di una nuova ArrayList nel metodo testato
-		try (MockedStatic<ConPool> mockedConPool = mockStatic(ConPool.class);
-			 MockedConstruction<ArrayList> mockedList = mockConstruction(ArrayList.class,
-					 (mock, context) -> when(mock.add(any())).thenCallRealMethod())) {
+		try (MockedConstruction<ArrayList> mockedAL = mockConstruction(ArrayList.class, (mock, context) ->
+		{
+		})) {
 
-			// Simulazione della connessione e della query
+
 			Connection c = mock(Connection.class);
-			mockedConPool.when(ConPool::getConnection).thenReturn(c);  // Mock del metodo statico
-
+			try (MockedStatic<ConPool> conPool = mockStatic(ConPool.class)) {
+				when(ConPool.getConnection()).thenReturn(c);
+			}
 			PreparedStatement ps = mock(PreparedStatement.class);
 			when(c.prepareStatement(anyString())).thenReturn(ps);
-
 			ResultSet rs = mock(ResultSet.class);
 			when(ps.executeQuery()).thenReturn(rs);
+			when(rs.next()).thenReturn(true).thenReturn(false);
+			when(rs.getInt("ID_ordine")).thenReturn(1);
+			Date d = mock(Date.class);
+			when(rs.getDate("data_acquisto")).thenReturn(d);
+			when(rs.getString("email")).thenReturn("test");
+			when(rs.getInt("q_acquisto")).thenReturn(1);
+			when(rs.getString("nome")).thenReturn("test");
+			when(rs.getString("tipo")).thenReturn("moneta");
+			when(rs.getDouble("ID_ordine")).thenReturn(1.0);
 
-			// Simula il risultato della query con due ordini
-			when(rs.next()).thenReturn(true, true, false);
-			when(rs.getInt("id")).thenReturn(1, 2);
-			when(rs.getString("name")).thenReturn("Ordine1", "Ordine2");
-
-
-
-			// Esegui il metodo da testare
+			//esecuzione
 			ODDS.doRetrieveAllOrders();
 
-			// Verifica che gli ordini siano stati aggiunti alla lista
-			verify(spyList, times(2)).add(any(Ordine.class));
+			//controllo
+			verify(mockedAL.constructed().get(0)).add(any(Ordine.class));
+
 		}
 	}
 

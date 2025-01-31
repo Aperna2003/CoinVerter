@@ -55,7 +55,7 @@ public class OrdiniServlet extends HttpServlet {
 		}
 		
 		sessione.setAttribute("ordini", o);
-		response.sendRedirect("/admin/gindex.jsp");
+		response.sendRedirect("admin/gindex.jsp");
 		/*
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/gindex.jsp");
 		dispatcher.forward(request, response);

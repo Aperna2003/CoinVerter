@@ -51,8 +51,12 @@ public class ShopServlet extends HttpServlet {
 		}
 
 		sessione.setAttribute("products", prodotti);
+		response.sendRedirect("shop.jsp");
+		/*
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/shop.jsp");
 		dispatcher.forward(request, response);
+
+		 */
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
