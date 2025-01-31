@@ -32,8 +32,12 @@ public class ProductAdminServlet extends HttpServlet {
 		}
 
 		sessione.setAttribute("prd", prd);
+		response.sendRedirect("admin/gestioneProdotti.jsp");
+		/*
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/gestioneProdotti.jsp");
+
 		dispatcher.forward(request, response);
+		 */
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

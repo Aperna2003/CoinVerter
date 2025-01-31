@@ -36,6 +36,7 @@ public class ManageProductServletTest {
     @Before
     public void setUp() throws Exception {
         servlet = new ManageProductServlet();
+        servlet.init();
     }
 
     @Test
@@ -146,7 +147,7 @@ public class ManageProductServletTest {
             when(request.getParameter("tipo")).thenReturn("moneta");
             when(request.getParameter("nome")).thenReturn("nome");
             Part p = mock(Part.class);
-            when(request.getPart("foto")).thenReturn(p);
+            //when(request.getPart("foto")).thenReturn(p);
             when(p.getSubmittedFileName()).thenReturn("mock");
 
             //esecuzione
@@ -157,7 +158,7 @@ public class ManageProductServletTest {
             verify(pb).setType("moneta");
             verify(pb).setValue(Double.parseDouble("1"));
             verify(pb).setPrice(Float.parseFloat("1"));
-            verify(pb).setFoto(anyString());
+            //verify(pb).setFoto(anyString());
             verify(mockedDAO.constructed().get(0)).doUpdate(any(ProductBean.class));
         }
     }

@@ -5,19 +5,22 @@ import admin.ModifyProductServlet;
 import connection.ConPool;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockedConstruction;
+import org.mockito.MockedStatic;
 import org.mockito.junit.MockitoJUnitRunner;
 import prodotti.ProductDaoDataSource;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -31,100 +34,84 @@ public class OrderDaoDataSourceTest {
 
 	@Test
 	public void testDoRetrieveAll() throws Exception {
-		// Crea una lista reale che sarà popolata
-		List<Ordine> realList = new ArrayList<>();
+		// setup
 
-		// Intercetta la connessione al database
-		try (MockedStatic<ConPool> mockedConPool = mockStatic(ConPool.class)) {
+		try (MockedConstruction<ArrayList> mockedAL = mockConstruction(ArrayList.class, (mock, context) ->
+		{
+		})) {
 
-			// Mock della connessione
+
 			Connection c = mock(Connection.class);
-			mockedConPool.when(ConPool::getConnection).thenReturn(c);
-
+			try (MockedStatic<ConPool> conPool = mockStatic(ConPool.class)) {
+				when(ConPool.getConnection()).thenReturn(c);
+			}
 			PreparedStatement ps = mock(PreparedStatement.class);
 			when(c.prepareStatement(anyString())).thenReturn(ps);
-
 			ResultSet rs = mock(ResultSet.class);
 			when(ps.executeQuery()).thenReturn(rs);
+			when(rs.next()).thenReturn(true).thenReturn(false);
+			when(rs.getInt("ID_ordine")).thenReturn(1);
+			Date d = mock(Date.class);
+			when(rs.getDate("data_acquisto")).thenReturn(d);
+			when(rs.getString("email")).thenReturn("test");
+			when(rs.getInt("q_acquisto")).thenReturn(1);
+			when(rs.getString("nome")).thenReturn("test");
+			when(rs.getString("tipo")).thenReturn("moneta");
+			when(rs.getDouble("ID_ordine")).thenReturn(1.0);
 
-			// Simula il risultato della query con due ordini
-			when(rs.next()).thenReturn(true, true, false);
-			//when(rs.getInt("id")).thenReturn(1, 2);
-			//when(rs.getString("name")).thenReturn("Ordine1", "Ordine2");
+			//esecuzione
+			ODDS.doRetrieveAllOrders();
 
-			ArgumentCaptor<Ordine> ordineCaptor = ArgumentCaptor.forClass(Ordine.class);
+			//controllo
+			verify(mockedAL.constructed().get(0)).add(any(Ordine.class));
 
-			realList = ODDS.doRetrieveAllOrders();
-
-			assertEquals(2, realList.size());
 		}
 	}
 
 	@Test
 	public void testDoRetrieveByDateFilter() throws Exception {
-		// Crea una lista reale per raccogliere i risultati
-		List<Ordine> realList = new ArrayList<>();
-
-		// Intercetta la connessione al database
-		try (MockedStatic<ConPool> mockedConPool = mockStatic(ConPool.class);
-			 MockedConstruction<ProductDaoDataSource> mockedDAO = mockConstruction(ProductDaoDataSource.class)) {
-
-			// Mock della connessione
+		//setup
+		try (MockedConstruction<ProductDaoDataSource> mockedDAO = mockConstruction(ProductDaoDataSource.class);
+			 MockedConstruction<ArrayList> mockedAL = mockConstruction(ArrayList.class);
+		) {
+			OrderDaoDataSource source = new OrderDaoDataSource();
 			Connection c = mock(Connection.class);
-			mockedConPool.when(ConPool::getConnection).thenReturn(c);
+			when(ConPool.getConnection()).thenReturn(c);
 
-			PreparedStatement ps = mock(PreparedStatement.class);
-			when(c.prepareStatement(anyString())).thenReturn(ps);
-
+			String data1 = mock(String.class); // Mocked string data1
+			String data2 = mock(String.class); // Mocked string data2
 			ResultSet rs = mock(ResultSet.class);
 			when(ps.executeQuery()).thenReturn(rs);
+			Ordine o = mock(Ordine.class);
 
-			// Simula il risultato della query con due ordini
-			when(rs.next()).thenReturn(true, true, false);
-			//when(rs.getInt("id")).thenReturn(1, 2);
-			//when(rs.getString("data")).thenReturn("1-1-1", "2-2-2");
+			//esecuzione
+			ODDS.doRetrieveByDateFilter(data1, data2);
 
-			String data1 = "1-1-1";
-			String data2 = "2-2-2";
-
-			// Esegui il metodo da testare
-			realList = ODDS.doRetrieveByDateFilter(data1, data2);
-
-			assertEquals(2, realList.size());
+			//verifica
+			verify(mockedAL.constructed().get(0), times(2)).add(o);
 		}
 	}
 
 	@Test
 	public void testDoRetrieveByNameFilter() throws Exception {
-		// Crea una lista reale per raccogliere i risultati
-		List<Ordine> realList = new ArrayList<>();
-
-		// Intercetta la connessione al database
-		try (MockedStatic<ConPool> mockedConPool = mockStatic(ConPool.class);
-			 MockedConstruction<ProductDaoDataSource> mockedDAO = mockConstruction(ProductDaoDataSource.class)) {
-
-			// Mock della connessione
+		//setup
+		try (MockedConstruction<ProductDaoDataSource> mockedDAO = mockConstruction(ProductDaoDataSource.class);
+			 MockedConstruction<ArrayList> mockedAL = mockConstruction(ArrayList.class);
+		) {
+			OrderDaoDataSource source = new OrderDaoDataSource();
 			Connection c = mock(Connection.class);
-			mockedConPool.when(ConPool::getConnection).thenReturn(c);
+			when(ConPool.getConnection()).thenReturn(c);
 
-			PreparedStatement ps = mock(PreparedStatement.class);
-			when(c.prepareStatement(anyString())).thenReturn(ps);
-
+			String nome = mock(String.class); // Mocked string data1
 			ResultSet rs = mock(ResultSet.class);
 			when(ps.executeQuery()).thenReturn(rs);
+			Ordine o = mock(Ordine.class);
 
-			// Simula il risultato della query con due ordini
-			when(rs.next()).thenReturn(true, true, false);
-			//when(rs.getInt("id")).thenReturn(1, 2);
-			//when(rs.getString("name")).thenReturn("nome1", "nome2");
+			//esecuzione
+			source.doRetrieveByNameFilter(nome);
 
-			String nome = "nome";
-
-			// Esegui il metodo da testare
-			realList = ODDS.doRetrieveByNameFilter(nome);
-
-			// Verifica che gli ordini siano stati aggiunti alla lista
-			assertEquals(2, realList.size());
+			//verifica
+			verify(mockedAL.constructed().get(0), times(2)).add(o);
 		}
 	}
 
