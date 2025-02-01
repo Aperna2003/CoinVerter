@@ -65,12 +65,12 @@
 							<td data-label="STATUS ADMIN"><%=u.isAdmin()%></td>
 							<td>
 								<button class="adminBtn modAdminBtn">
-									<a href="Manage?activity=modify&email=<%=u.getEmail()%>">
+									<a href="../Manage?activity=modify&email=<%=u.getEmail()%>">
 										<img src="<%=request.getServletContext().getContextPath()%>/img/icon/iconModify.png" alt="" class="remove-item">
 									</a>
 								</button>
 								<button class="adminBtn modAdminBtn">
-									<a href="Manage?activity=remove&email=<%=u.getEmail()%>">
+									<a href="../Manage?activity=remove&email=<%=u.getEmail()%>">
 										<img src="<%=request.getServletContext().getContextPath()%>/img/icon/iconTrash.png"	alt="" class="remove-item">
 									</a>
 								</button>
