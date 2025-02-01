@@ -33,10 +33,11 @@ public class AccountAdminServlet extends HttpServlet {
 
 		sessione.setAttribute("acc", prd);
 		response.sendRedirect("admin/gestioneAccount.jsp");
+
 		/*
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/gestioneAccount.jsp");
 		dispatcher.forward(request, response);
-		 */
+		*/
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

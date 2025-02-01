@@ -18,7 +18,7 @@
 
 <head>
 	<link rel="shortcut icon" type="image/gif" href="img/logo.png">
-	<meta charset="utf-8">
+	<meta charset="UTF-8">
 	<meta name="viewport" content="initial-scale = 1, width = device-width">
 	<link id="mystylesheet" rel="stylesheet" type="text/css" href="CSS/light.css">
 
@@ -121,11 +121,11 @@
 				</div>
 				<div class="popup-overlay" id="popupOverlay">
 					<div class="popup" id="popup">
-						<a class="close" id="closePopup" onclick="closePopupFunc()">�</a>
+						<a class="close" id="closePopup" onclick="closePopupFunc()">x</a>
 						<div class="popup-content">
-							<p>inserisci quantit�:</p>
+							<p>inserisci quantita':</p>
 							<div class="wau">
-								<input type="number" placeholder="quantit�" id="inputQty"
+								<input type="number" placeholder="quantita'" id="inputQty"
 									min="1">
 							</div>
 							<a class="addcart" onclick="modificaCarrello('add')">Aggiungi
