@@ -54,8 +54,9 @@
 						<div class="itemContainer" id="empty-cart-message">
 							<div class="cart-item">
 								<div class="row">
+									<img id="pImg" src="img/products/empty.png" alt="">
 									<div class="imgContainer center-item">
-										<h5>Il tuo carrello � vuoto</h5>
+										<h5>Il tuo carrello e' vuoto</h5>
 									</div>
 									<div class="dataContainer center-item">
 										<h5>Non ci sono articoli nel tuo carrello. Torna al
@@ -73,7 +74,7 @@
 						<div class="itemContainer">
 							<div class="cart-item">
 								<div class="row">
-									<img id="pImg" src="<%=b.getFoto()%>" alt="">
+									<img id="pImg2" src="<%=b.getFoto()%>" alt="">
 									<h5 class="itemName"><%=b.getName()%></h5>
 									<h5>
 										&#128; <span id="price"><%=df.format(b.getPrice()*b.getQuantity())%></span>

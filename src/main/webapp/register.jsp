@@ -23,7 +23,7 @@
 					<button type="submit">Registrati</button>
 				</div>
 			</form>
-			<p id="reg"> Hai gi� un account? <a href="login.jsp">Accedi qui!</a></p>
+			<p id="reg"> Hai gia' un account? <a href="login.jsp">Accedi qui!</a></p>
 		</div>
 	</div>
 </body>
