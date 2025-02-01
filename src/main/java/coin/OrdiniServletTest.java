@@ -19,7 +19,7 @@ import org.mockito.Mock;
 import org.mockito.MockedConstruction;
 import org.mockito.junit.MockitoJUnitRunner;
 import prodotti.ProductDaoDataSource;
-import utenti.TestDataSource;
+
 import utenti.User;
 
 import java.io.IOException;
@@ -67,7 +67,7 @@ public class OrdiniServletTest {
 			//controllo
 
 			verify(session).setAttribute("ordini", O);
-			verify(response).sendRedirect("/admin/gindex.jsp");
+			verify(response).sendRedirect("admin/gindex.jsp");
 			verify(mockedDAO.constructed().get(0)).doRetrieveAllOrders();
 		}
 	}
@@ -93,7 +93,7 @@ public class OrdiniServletTest {
 			//controllo
 
 			verify(session).setAttribute("ordini", O);
-			verify(response).sendRedirect("/admin/gindex.jsp");
+			verify(response).sendRedirect("admin/gindex.jsp");
 			verify(mockedDAO.constructed().get(0)).doRetrieveByDateFilter("1-1-1", "2-2-2");
 		}
 	}
@@ -118,7 +118,7 @@ public class OrdiniServletTest {
 			//controllo
 
 			verify(session).setAttribute("ordini", O);
-			verify(response).sendRedirect("/admin/gindex.jsp");
+			verify(response).sendRedirect("admin/gindex.jsp");
 			verify(mockedDAO.constructed().get(0)).doRetrieveByNameFilter("utente");
 		}
 	}

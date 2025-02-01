@@ -1,5 +1,6 @@
 package prodotti;
 
+import coin.CartServlet;
 import coin.OrderDaoDataSource;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,9 +10,11 @@ import org.mockito.Mock;
 import org.mockito.MockedConstruction;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;
@@ -57,5 +60,15 @@ public class ProductAdminServletTest {
         response.sendRedirect("admin/gestioneProdotti.jsp");
 
         }
+    }
+
+    @Test
+    public void testDoGet() throws ServletException, IOException {
+        ProductAdminServlet serv = spy(new ProductAdminServlet());
+        doNothing().when(serv).doPost(request, response);
+
+        serv.doGet(request, response);
+
+        verify(serv).doPost(request, response);
     }
 }
