@@ -1,8 +1,7 @@
 <%--suppress ALL --%>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
-<%@ page
-	import="java.util.ArrayList,prodotti.ProductBean,coin.Carrello,java.text.DecimalFormat"%>
+<%@ page import="java.util.ArrayList,prodotti.ProductBean,coin.Carrello,java.text.DecimalFormat"%>
 
 <%
 	HttpSession sessione = request.getSession();
@@ -18,20 +17,18 @@
 %>
 
 <head>
-<link rel="shortcut icon" type="image/gif" href="img/logo.png">
-<meta charset="utf-8">
-<meta name="viewport" content="initial-scale = 1, width = device-width">
-<link id="mystylesheet" rel="stylesheet" type="text/css"
-	href="CSS/light.css">
-<%if(prodotti.size()<=4){%>
-<link id="mystylesheet" rel="stylesheet" type="text/css"
-	href="CSS/shopLow.css">
-<%}else{%>
-<link id="mystylesheet" rel="stylesheet" type="text/css"
-	href="CSS/shopHigh.css">
-<%} %>
+	<link rel="shortcut icon" type="image/gif" href="img/logo.png">
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale = 1, width = device-width">
+	<link id="mystylesheet" rel="stylesheet" type="text/css" href="CSS/light.css">
 
-<title>CoinVerter</title>
+	<%if (prodotti.size() <= 4) {%>
+	<link id="mystylesheet" rel="stylesheet" type="text/css" href="CSS/shopLow.css">
+	<%} else {%>
+	<link id="mystylesheet" rel="stylesheet" type="text/css" href="CSS/shopHigh.css">
+	<%} %>
+
+	<title>CoinVerter</title>
 </head>
 
 <body id="" onresize="switchSuite()" onload="switchSuite()">
@@ -40,13 +37,7 @@
 		<jsp:param name="PageTitle" value="shop" />
 	</jsp:include>
 
-
-
-
-
-
 	<main class="bgPage">
-
 		<section>
 			<div class="menuBar">
 				<header>
@@ -97,13 +88,10 @@
 				</div>
 
 				<div class="shopRow">
-					<% 
-			if(prodotti.isEmpty()){%>
+				<% if(prodotti.isEmpty()){%>
 					<h1>ARRAYLIST PRODOTTI VUOTO</h1>
-					<%}
-			for(ProductBean p : prodotti){ 
-
-			%>
+				<%}
+				for(ProductBean p : prodotti){ %>
 					<div class="shopItem">
 						<div class="itemBox">
 							<div class="optionContainer">
@@ -128,8 +116,7 @@
 							</div>
 						</div>
 					</div>
-					<%}%>
-
+				<%}%>
 
 				</div>
 				<div class="popup-overlay" id="popupOverlay">
@@ -159,7 +146,7 @@
     });
   </script>
 
-	<jsp:include page='footer.html'></jsp:include>
+	<jsp:include page='footer.jsp'></jsp:include>
 
 	<!--Jquery-->
 	<script

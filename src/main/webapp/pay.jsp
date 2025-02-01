@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" type="image/gif" href="../../../../../git/CoinVerter/WebContent/img/logo.png">
-<meta charset="utf-8">
-<meta name="viewport" content="initial-scale = 1, width = device-width">
-<link id="mystylesheet" rel="stylesheet" type="text/css"
-	href="../../../../../git/CoinVerter/WebContent/CSS/light.css">
+	<link rel="shortcut icon" type="image/gif" href="<%=request.getServletContext().getContextPath()%>/img/logo.png">
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale = 1, width = device-width">
+	<link id="mystylesheet" rel="stylesheet" type="text/css" href="<%=request.getServletContext().getContextPath()%>/CSS/light.css">
 
-<title>CoinVerter Login</title>
+	<title>CoinVerter Login</title>
 <script>
     // Funzione per formattare il numero della carta
     function formatCardNumber(input) {

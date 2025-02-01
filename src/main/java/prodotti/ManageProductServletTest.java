@@ -1,7 +1,6 @@
 package prodotti;
 
 
-import coin.CartServlet;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,8 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-
-import java.io.IOException;
 
 import static org.mockito.Mockito.*;
 
@@ -44,7 +41,7 @@ public class ManageProductServletTest {
     @Before
     public void setUp() throws Exception {
         servlet = new ManageProductServlet();
-        cx = mock(ServletContext.class);
+        servlet.init();
     }
 
     @Test

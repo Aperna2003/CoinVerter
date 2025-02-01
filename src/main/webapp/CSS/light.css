@@ -720,9 +720,7 @@ main {
 }
 
 .bgPage {
-	background: linear-gradient(to top, rgb(10, 10, 10, 0.1),
-		rgb(10, 10, 10, 0.1)), url("../img/backgroundMain.png"), no-repeat
-		center center fixed;
+	background: linear-gradient(to top, rgb(10, 10, 10, 0.1),rgb(10, 10, 10, 0.1)), url("../img/backgroundMain.png"), no-repeat center center fixed;
 	background-size: cover;
 	z-index: -1;
 	background-attachment: fixed;
@@ -1452,6 +1450,8 @@ footer a:hover {
 	border-radius: 20px;
 	padding: 10px 30px;
 	font-size: 19px;
+	color: #444B54;
+	text-decoration: none;
 }
 
 .checkOutBtn:hover {
@@ -1570,7 +1570,7 @@ footer a:hover {
 	margin-top: 50px
 }
 
-.sideItem a {
+#sideItem a, #sideItem2 a, #sideItem3 a, #sideItem4 a {
 	color: #444B54;
 	text-decoration: none;
 	display: block;
@@ -1579,7 +1579,7 @@ footer a:hover {
 	line-height: 0px;
 }
 
-.sideIcon {
+#sideIcon, #sideIcon2, #sideIcon3, #sideIcon4 {
 	vertical-align: middle;
 	width: 30px;
 	height: 30px;
@@ -1790,4 +1790,27 @@ table th {
 #imgvolo {
 	width: 100px;
 	height: 100px;
+}
+
+.error {
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f8f8f8;
+}
+
+.error-container {
+	text-align: center;
+}
+
+.error-container h1 {
+	font-size: 3em;
+	color: #dc3545;
+}
+
+.error-container p {
+	color: #444B56;
 }

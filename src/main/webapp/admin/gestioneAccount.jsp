@@ -28,9 +28,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale = 1, width = device-width">
 <%if(users.size() <= 3){%>
-	<link id="mystylesheet" rel="stylesheet" type="text/css" href="CSS/adminFix.css">
+	<link id="mystylesheet" rel="stylesheet" type="text/css" href="<%=request.getServletContext().getContextPath()%>/CSS/adminFix.css">
 <%}else if(users.size() <= 9){%>
-	<link id="mystylesheet" rel="stylesheet" type="text/css" href="CSS/adminLow.css">
+	<link id="mystylesheet" rel="stylesheet" type="text/css" href="<%=request.getServletContext().getContextPath()%>/CSS/adminLow.css">
 <%}%>
 <script src="JS/scripts.js"></script>
 

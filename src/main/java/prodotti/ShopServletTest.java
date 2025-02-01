@@ -1,6 +1,5 @@
 package prodotti;
 
-import coin.CartServlet;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.mockito.ArgumentMatchers.anyString;
@@ -37,6 +35,9 @@ public class ShopServletTest {
     @Test
     public void testDoPostRicercaEmpty() throws Exception {
         //setup
+//        try (MockedConstruction<ArrayList> mockedAL = mockConstruction(ArrayList.class, (mock, context) ->
+//        {
+//        })) {
             ArrayList<ProductBean> p = mock(ArrayList.class);
             try (MockedConstruction<ProductDaoDataSource> mockedDAO = mockConstruction(ProductDaoDataSource.class, (mock, context) ->
             {
