@@ -39,7 +39,7 @@ public class LogoutTest {
 
         //controllo
         verify(session).invalidate();
-        verify(response).sendRedirect("/index.jsp");
+        verify(response).sendRedirect("index.jsp");
     }
 
     @Test

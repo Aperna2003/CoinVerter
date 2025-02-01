@@ -48,7 +48,7 @@ public class AccountAdminServletTest {
 
             //controllo
             verify(mockedDAO.constructed().get(0)).doRetrieveAll("");
-            verify(response).sendRedirect("GestioneACC");
+            verify(response).sendRedirect("admin/gestioneAccount.jsp");
         }
     }
 
