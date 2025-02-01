@@ -45,7 +45,7 @@ public class CheckoutTest {
 
 
 	@Test
-	public void testDoGetHttpServletRequestHttpServletResponse() throws Exception {
+	public void testDoGet() throws Exception {
 		// Crea una lista mock di prodotti
 		ArrayList<ProductBean> list = new ArrayList<>();
 		HashMap<String, Double> p = new HashMap<>();
