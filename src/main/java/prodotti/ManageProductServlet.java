@@ -92,14 +92,7 @@ public class ManageProductServlet extends HttpServlet {
 						if(filePart != null) {
 					    	 String fileName = filePart.getSubmittedFileName();
 					    	 if(fileName != null && !fileName.isEmpty()){
-					    		 String user = System.getProperty("user.home"); 
-					    		 
-					    		 
-					    		 
-					    		 
-					    		 
-					    		 //String relativePath = user + "\\git\\repository\\codice\\CoinVerter\\WebContent\\img\\products\\" + fileName;
-					    		 //String relativePath = "\\WebContent\\img\\products\\" + fileName;
+
 					    		 
 					    		 String projectPath = getServletContext().getRealPath("/");
 					    	     String relativePath = projectPath + "img/products/" + fileName;
@@ -114,7 +107,7 @@ public class ManageProductServlet extends HttpServlet {
 						//if((prodotto.getType() == "ricarica") && quantita > 0) prodotto.setQuantity(quantita);
 						//else prodotto.setQuantity(-1)
 						source.doUpdate(prodotto);
-						System.out.println("fatto doupdate nuovi valori: "+ prodotto.toString());
+						System.out.println("fatto doupdate nuovi valori: "+ prodotto);
 						
 						
 					} catch (SQLException e) {

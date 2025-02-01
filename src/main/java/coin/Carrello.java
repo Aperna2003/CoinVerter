@@ -8,7 +8,7 @@ import java.util.Iterator;
 
 public class Carrello {
 
-	private ArrayList<ProductBean> products;
+	private final ArrayList<ProductBean> products;
 	private int count;
 	
 	public Carrello() {

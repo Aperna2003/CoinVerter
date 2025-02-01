@@ -1,14 +1,10 @@
 package utenti;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
 import java.sql.SQLException;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +32,7 @@ public class RegisterServlet extends HttpServlet {
 			
 			
 			List<String> errors = new ArrayList<>();
-        	RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("login.jsp");
+
         	try {
 				u = d.doRetrieveByEmail(email);
 				if(u == null) u = new User();

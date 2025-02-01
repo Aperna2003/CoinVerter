@@ -1,22 +1,16 @@
 package connection;
 
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
 import java.sql.Connection;
-import javax.sql.DataSource;
+
 import java.sql.SQLException;
-import java.util.TimeZone;
+
 
 import java.sql.*;
 import java.util.*;
 
 public class ConPool {
-    private static List<Connection> freeDbConnections;
+    private static final List<Connection> freeDbConnections;
 
     static {
         freeDbConnections = new LinkedList<Connection>();
@@ -34,7 +28,7 @@ public class ConPool {
         String db = "coinverter";
         String username = "root";
         String password = "admin";
-        newConnection = DriverManager.getConnection("jdbc:mysql://" + ip + ":" + port + "/" + db + "", username, password);
+        newConnection = DriverManager.getConnection("jdbc:mysql://" + ip + ":" + port + "/" + db, username, password);
         newConnection.setAutoCommit(true);
         return newConnection;
     }
@@ -42,7 +36,7 @@ public class ConPool {
     public static synchronized Connection getConnection() throws SQLException {
         Connection connection;
         if (!freeDbConnections.isEmpty()) {
-            connection = (Connection) freeDbConnections.get(0);
+            connection = freeDbConnections.get(0);
             ConPool.freeDbConnections.remove(0);
             try {
                 if (connection.isClosed()) {

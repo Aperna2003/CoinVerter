@@ -11,14 +11,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class AccountAdminServletTest {
+public class RegisterServletTest {
 
     @Mock
     HttpSession session;
@@ -30,31 +29,40 @@ public class AccountAdminServletTest {
     HttpServletResponse response;
 
     @InjectMocks
-    AccountAdminServlet servlet;
+    RegisterServlet servlet;
+
 
     @Test
-    public void testDoPost() throws Exception {
+    public void doPostCorrect() throws Exception {
         //setup
-        when(request.getSession()).thenReturn(session);
-        ArrayList<User> u = mock(ArrayList.class);
+        User u = mock(User.class);
         try (MockedConstruction<UsersDaoDataSource> mockedDAO = mockConstruction(UsersDaoDataSource.class, (mock, context) ->
         {
-            when(mock.doRetrieveAll("")).thenReturn(u);
+            when(mock.doRetrieveByEmail(anyString())).thenReturn(u);
         })) {
-
+            when(request.getParameter("name")).thenReturn("name");
+            when(request.getParameter("surname")).thenReturn("surname");
+            when(request.getParameter("email")).thenReturn("email");
+            when(request.getParameter("pwd")).thenReturn("pwd");
 
             //esecuzione
             servlet.doPost(request, response);
 
             //controllo
-            verify(mockedDAO.constructed().get(0)).doRetrieveAll("");
-            verify(response).sendRedirect("GestioneACC");
+            verify(u).setNome("name");
+            verify(u).setCognome("surname");
+            verify(u).setEmail("email");
+            verify(u).setPwd(Encrypter.hashPassword("pwd"));
+            verify(u).setAdmin(false);
+            verify(mockedDAO.constructed().get(0)).doSave(any(User.class));
+            verify(response).sendRedirect("login.jsp");
         }
     }
 
+
     @Test
     public void testDoGet() throws ServletException, IOException {
-        AccountAdminServlet serv = spy(new AccountAdminServlet());
+        RegisterServlet serv = spy(new RegisterServlet());
         doNothing().when(serv).doPost(request, response);
 
         serv.doGet(request, response);

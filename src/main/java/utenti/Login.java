@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +36,7 @@ public class Login extends HttpServlet {
             	request.setAttribute("errors", errors);
             	response.sendRedirect("login.jsp");
             	//dispatcherToLoginPage.forward(request, response);
-            	return; // note the return statement here!!!
+                // note the return statement here!!!
             }
             else{
             email = email.trim();
@@ -53,8 +53,12 @@ public class Login extends HttpServlet {
            			
             if(u != null && u.getPwd().equals(password)) {
             	request.getSession().setAttribute("user", u);
+            	/*
             	RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             	dispatcher.forward(request, response);
+
+            	 */
+				response.sendRedirect("index.jsp");
 			} else {
 				errors.add("email o password errate");
 				request.setAttribute("errors", errors);

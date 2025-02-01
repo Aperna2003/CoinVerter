@@ -17,7 +17,7 @@ import utenti.User;
 
 public class ProductDaoDataSource implements IProductDAO<ProductBean> {
 
-	private String selectSQL = "SELECT * FROM " + ProductDaoDataSource.TABLE_NAME + " WHERE ID_prodotto = ?";
+	private final String selectSQL = "SELECT * FROM " + ProductDaoDataSource.TABLE_NAME + " WHERE ID_prodotto = ?";
 	
 	private static DataSource ds;
 	

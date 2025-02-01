@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import java.io.IOException;
+
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -61,7 +63,6 @@ public class ManageProductServletTest {
     @Test
     public void testDoPostNullUser() throws Exception {
         //setup
-        User u = mock(User.class);
         when(request.getSession()).thenReturn(session);
         when(request.getSession().getAttribute("user")).thenReturn(null);
 
@@ -92,6 +93,7 @@ public class ManageProductServletTest {
             servlet.doPost(request, response);
 
             //controllo
+            verify(mockedDAO.constructed().get(0)).doRetrieveByKey(anyInt());
             verify(session).setAttribute("mod", pb);
             verify(response).sendRedirect("admin/ProdottoForm.jsp");
 
@@ -117,7 +119,7 @@ public class ManageProductServletTest {
             when(request.getParameter("prezzo")).thenReturn("");
             when(request.getParameter("tipo")).thenReturn("");
             when(request.getParameter("nome")).thenReturn("");
-            ServletContext cx = mock(ServletContext.class);
+
             ServletConfig cs = mock(ServletConfig.class);
             servlet.init(cs);
 

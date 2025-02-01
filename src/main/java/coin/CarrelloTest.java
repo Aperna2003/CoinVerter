@@ -109,7 +109,7 @@ public class CarrelloTest {
 		ArrayList<ProductBean> PCarrello = carrello.getProducts();
 		int NCarrello = carrello.getCount();
 		assertTrue(NCarrello > 0);
-		assertTrue(!PCarrello.isEmpty());
+        assertFalse(PCarrello.isEmpty());
 
 	}
 

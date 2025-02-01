@@ -4,8 +4,8 @@
 
 <%
 	String name = request.getParameter("PageTitle");
-	String ref = new String();
-	String link = new String();
+	String ref = "";
+	String link = "";
 	User user = (User)session.getAttribute("user");
 	//User user = new User();
 	//user.setAdmin(true);
